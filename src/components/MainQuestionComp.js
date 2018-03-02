@@ -6,10 +6,12 @@ import CurrentQuestionComp from './CurrentQuestionComp'
 class MainQuestionComp extends React.Component {
   constructor(props) {
     super(props);
+    this.answerSubmitCheck = this.answerSubmitCheck.bind(this);
   }
 
-  answerSubmitCheck() {
-    
+  answerSubmitCheck(e) {
+    e.preventDefault();
+    // Get the answer from the REDUX store.
   }
 
   render() {

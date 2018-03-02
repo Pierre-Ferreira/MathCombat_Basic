@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './IntegerInputComp.css'
 
 class IntegerInputComp extends React.Component {
   constructor(props) {
@@ -22,12 +23,12 @@ class IntegerInputComp extends React.Component {
     if (newText[0] === '-') {
       negativeInt = true;
       newText = newText.slice(1);
-      if (newText.lenght === 0) {
+      if (newText.length === 0) {
         this.setState({inputValue : '-'});
       }
     }
     // Check if the text is a number.
-    if (!isNaN(newText) && newText.lenght !== 0) {
+    if (!isNaN(newText)) {
       newText = (newText === '') ? '' : Math.trunc(newText);
       // Replace the minus sign if needed.
       if (negativeInt) {
@@ -45,6 +46,8 @@ class IntegerInputComp extends React.Component {
       }
       // Set the state with the new value.
       this.setState({inputValue : newText});
+      // Update the REDUX store with the current value (answer).
+
     } else {
       this.setState({feedBackMsg: "Net getalle, Doofus!"})
     }
@@ -52,22 +55,25 @@ class IntegerInputComp extends React.Component {
 
   render() {
     return (
-      <div className = "">
+      <div id = "interger-input-main">
         <div className = "">
-          <div className = "">
-            <label className = ""> {this.props.title}</label>
-          </div>
+          {!this.props.title ? null :
+              <div className = "">
+                <label className = ""> {this.props.title}</label>
+              </div>
+          }
           <div>
             <input
               id="inputlg"
-              className = "form-input"
+              className = "integer-input"
               name = {this.props.name}
               type = "text"
               value = {this.state.inputValue}
               onChange = {this.handleOnChange}
+              autoComplete="off"
             />
           </div>
-          <div>
+          <div style = {this.props.feedbackStyle}>
             {this.state.feedBackMsg}
           </div>
         </div>
@@ -77,7 +83,7 @@ class IntegerInputComp extends React.Component {
 }
 
 IntegerInputComp.propTypes = {
-
+  feedbackStyle: PropTypes.object.isRequired,
 }
 
 IntegerInputComp.defaultProps = {
