@@ -76,7 +76,7 @@ class IntegerInputComp extends React.Component {
   }
 }
 
-IntegerInputComp.PropTypes = {
+IntegerInputComp.propTypes = {
 
 }
 

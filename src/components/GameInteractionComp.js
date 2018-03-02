@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import MainQuestionComp from './MainQuestionComp'
 
 class GameInteractionComp extends React.Component {
   constructor(props) {
@@ -7,7 +8,10 @@ class GameInteractionComp extends React.Component {
   }
   render() {
     return (
-      <section id="game-interaction-area">Game Interaction Comp</section>
+      <section id="game-interaction-area">
+        Game Interaction Comp
+        <MainQuestionComp />
+      </section>
     )
   }
 }
