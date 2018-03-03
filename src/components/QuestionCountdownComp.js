@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './QuestionCountdownComp.css'
+// import what from '../garbage/pile'
 
 
 const QuestionCountdownComp = (props) => {
