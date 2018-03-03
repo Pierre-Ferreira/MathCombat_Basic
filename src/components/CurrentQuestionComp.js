@@ -14,9 +14,9 @@ const CurrentQuestionComp = (props) => {
           <div className="row">
             <div className="col-sm-1 col-sm-offset-1"></div>
             <div className="col-sm-2">{props.questionId})</div>
-            <div className="col-sm-1">{props.gameTable}</div>
+            <div className="col-sm-1">{props.questionOperand1}</div>
             <div className="col-sm-1">{props.gameOperator}</div>
-            <div className="col-sm-1">{props.questionOperand}</div>
+            <div className="col-sm-1">{props.questionOperand2}</div>
             <div className="col-sm-1">=</div>
               <div className="col-sm-2">
                 <IntegerInputComp
@@ -32,9 +32,10 @@ const CurrentQuestionComp = (props) => {
 
 CurrentQuestionComp.propTypes = {
   questionId: PropTypes.number.isRequired,
-  gameTable: PropTypes.number.isRequired,
+  questionOperand1: PropTypes.number.isRequired,
+  questionOperand2: PropTypes.number.isRequired,
   gameOperator: PropTypes.string.isRequired,
-  questionOperand: PropTypes.number.isRequired,
+  // questionOperand: PropTypes.number.isRequired,
   onSubmitFn: PropTypes.func.isRequired
 }
 

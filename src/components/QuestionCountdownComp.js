@@ -8,7 +8,7 @@ const QuestionCountdownComp = (props) => {
     <section id="question-countdown-area">
       <div className="container">
         <div className='row'>
-          <div className="col-sm-12 text-center">Tyd: {props.count}</div>
+          <div className="col-sm-12 text-center">Tyd: {props.timerCount}</div>
         </div>
       </div>
     </section>
@@ -16,10 +16,10 @@ const QuestionCountdownComp = (props) => {
 }
 
 QuestionCountdownComp.propTypes = {
-  // count: PropTypes.string.isRequired
+  // timerCount: PropTypes.string.isRequired
 }
 
 QuestionCountdownComp.defaultProps = {
-  count: 'N/A'
+  timerCount: 'N/A'
 }
 export default QuestionCountdownComp
