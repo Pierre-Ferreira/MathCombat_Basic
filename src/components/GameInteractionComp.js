@@ -1,6 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import MainQuestionComp from './MainQuestionComp'
+import React from 'react';
+import PropTypes from 'prop-types';
+// import MainQuestionComp from './MainQuestionComp';
+import MainQuestionContainer from '../containers/MainQuestionContainer';
 
 class GameInteractionComp extends React.Component {
   constructor(props) {
@@ -10,10 +11,10 @@ class GameInteractionComp extends React.Component {
     return (
       <section id="game-interaction-area">
         Game Interaction Comp
-        <MainQuestionComp />
+        <MainQuestionContainer />
       </section>
     )
   }
 }
 
-export default GameInteractionComp
+export default GameInteractionComp;

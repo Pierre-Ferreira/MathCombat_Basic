@@ -1,20 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import './IntegerInputComp.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import './IntegerInputComp.css';
 
 class IntegerInputComp extends React.Component {
   constructor(props) {
     super(props);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.state = {
-      inputValue : "",
-      feedBackMsg: ""
+      inputValue: '',
+      feedBackMsg: '',
     };
   }
 
   handleOnChange(e) {
     // Reset the feedback message.
-    this.setState({feedBackMsg: ""});
+    this.setState({ feedBackMsg: '' });
     // Trim the input value.
     let newText = (e.target.value).trim();
     // let newInteger = this.state.inputValue;
@@ -24,7 +24,7 @@ class IntegerInputComp extends React.Component {
       negativeInt = true;
       newText = newText.slice(1);
       if (newText.length === 0) {
-        this.setState({inputValue : '-'});
+        this.setState({ inputValue: '-' });
       }
     }
     // Check if the text is a number.
@@ -32,7 +32,7 @@ class IntegerInputComp extends React.Component {
       newText = (newText === '') ? '' : Math.trunc(newText);
       // Replace the minus sign if needed.
       if (negativeInt) {
-        newText = '-' + newText
+        newText = `-${newText}`;
       }
       // Check if value is bigger than min value.
       const minValue = (this.props.minValue) ? this.props.minValue : Number.NEGATIVE_INFINITY
@@ -47,6 +47,7 @@ class IntegerInputComp extends React.Component {
       // Set the state with the new value.
       this.setState({inputValue : newText});
       // Update the REDUX store with the current value (answer).
+      this.props.parentOnChangeFunc(newText);
 
     } else {
       this.setState({feedBackMsg: "Net getalle, Doofus!"})
