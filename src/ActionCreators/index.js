@@ -17,6 +17,11 @@ export const saveGameSettings = (
   gameQuestionTime,
 });
 
+export const saveAnswerInfo = answerObject => ({
+  type: types.SAVE_ANSWER_INFO,
+  answerObject,
+});
+
 export const updateCurrentAnswer = currentAnswer => ({
   type: types.UPDATE_CURRENT_ANSWER,
   currentAnswer,

@@ -1,6 +1,15 @@
 import * as types from '../constants/ActionTypes';
 
-const gameInfo = (state = [], action) => {
+const initialState = {
+  gameId: '',
+  gameNoOfQuestions: '',
+  gameTable: '',
+  gameOperator: '',
+  gameQuestionTime: '',
+  currentAnswer: '',
+};
+
+const gameSettings = (state = initialState, action) => {
   switch (action.type) {
     case types.SAVE_GAME_SETTINGS:
       return {
@@ -11,14 +20,9 @@ const gameInfo = (state = [], action) => {
         gameOperator: action.gameOperator,
         gameQuestionTime: action.gameQuestionTime,
       };
-    case types.UPDATE_CURRENT_ANSWER:
-      return {
-        ...state,
-        currentAnswer: action.currentAnswer,
-      };
     default:
       return state;
   }
 };
 
-export default gameInfo;
+export default gameSettings;

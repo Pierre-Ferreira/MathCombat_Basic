@@ -16,10 +16,10 @@ class MainQuestionComp extends React.Component {
     this.state = {
       timerCount: gameQuestionTime,
       gameQuestionTime,
-      totalNoOfQuestions: 4,
+      totalNoOfQuestions: 4, // TODO: THIS MUST BE UPDATED AT SAVE_GAME_SETTINGS.
       questionId: 0,
-      gameTable: 8, // SHOULD COME FROM REDUX.
-      gameOperator: 'x', // SHOULD COME FROM REDUX.
+      gameTable: 8, //TODO: SHOULD COME FROM REDUX. AND MUST BE UPDATED AT SAVE_GAME_SETTINGS.
+      gameOperator: 'x', //TODO: SHOULD COME FROM REDUX. AND MUST BE UPDATED AT SAVE_GAME_SETTINGS.
       questionOperand1: '',
       questionOperand2: '',
       correctAnswer: '',
@@ -43,7 +43,8 @@ class MainQuestionComp extends React.Component {
   tick() {
     // This function is called every 500 ms. It updates the timerCount.
     // Calling setState causes the component to be re-rendered
-    const timerCount = this.state.gameQuestionTime - Math.trunc((new Date() - this.startTime) / 1000);
+    const timerCount = this.state.gameQuestionTime -
+                              Math.trunc((new Date() - this.startTime) / 1000);
     // console.log(this.gameQuestionTime)
     // console.log(timerCount)
     this.setState({ timerCount });
@@ -54,19 +55,40 @@ class MainQuestionComp extends React.Component {
 
   evaluateAnswer() {
     // Check if the answer is correct.
+    let answeredCorrectly = 'false';
     if (this.state.correctAnswer === this.props.currentAnswer) {
-      console.log('CORRECT');
+      answeredCorrectly = true;
     } else {
-      console.log('INCORRECT');
+      answeredCorrectly = false;
     }
+    const { questionId } = this.state;
+    const { questionOperand1 } = this.state;
+    // const { gameOperator } = this.state; // TODO: THIS MUST BE UPDATED AT SAVE_GAME_SETTINGS
+    const { questionOperand2 } = this.state;
+    // const { gameTable } = this.state; // TODO: THIS MUST BE UPDATED AT SAVE_GAME_SETTINGS
+    const { correctAnswer } = this.state;
+    const answerGiven = this.props.currentAnswer;
+    // Save the answer info.
+    const answerObject = {
+      questionId,
+      questionOperand1,
+      questionOperand2,
+      correctAnswer,
+      answerGiven,
+      answeredCorrectly,
+    };
+
+    this.props.saveAnswerInfo(answerObject)
     // Generate a new question.
     this.generateNewQuestion();
   }
 
   generateNewQuestion() {
+    // Clear the current answer.
     // Check if more questions need to be asked.
     if (this.state.questionId < this.state.totalNoOfQuestions) {
-      // Create a multiplication question. (THIS NEEDS TO BE A FUNCTION THAT CAN HANDLE DIVIDE, PLUS, MINUS, ETC)
+      // Create a multiplication question. (THIS NEEDS TO BE A FUNCTION THAT
+      // CAN HANDLE DIVIDE, PLUS, MINUS, ETC).
       // Generate a random number between 0 and 12.
       const lowerLimit = 0;
       const upperLimit = 12;
@@ -99,13 +121,13 @@ class MainQuestionComp extends React.Component {
 
   handleAnswerSubmit(e) {
     e.preventDefault();
-    // Get the answer from the REDUX store.
-    this.evaluateAnswer()
+    // Evaluate the answer.
+    this.evaluateAnswer();
   }
 
   render() {
     return (
-      <section  id="main-question-area">
+      <section id="main-question-area">
         <QuestionCountdownComp timerCount={this.state.timerCount} />
         <CurrentQuestionContainer
           questionId={this.state.questionId}
@@ -115,8 +137,8 @@ class MainQuestionComp extends React.Component {
           onSubmitFn={this.handleAnswerSubmit}
         />
       </section>
-    )
+    );
   }
 }
 
-export default MainQuestionComp
+export default MainQuestionComp;

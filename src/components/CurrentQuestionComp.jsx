@@ -19,11 +19,11 @@ class CurrentQuestionComp extends React.Component {
     };
 
     return (
-      <section  id="current-question-area">
+      <section id="current-question-area">
         <form onSubmit={this.props.onSubmitFn}>
           <div className="container">
             <div className="row">
-              <div className="col-sm-1 col-sm-offset-1"></div>
+              <div className="col-sm-1 col-sm-offset-1" />
               <div className="col-sm-2">{this.props.questionId})</div>
               <div className="col-sm-1">{this.props.questionOperand1}</div>
               <div className="col-sm-1">{this.props.gameOperator}</div>
@@ -33,6 +33,7 @@ class CurrentQuestionComp extends React.Component {
                 <IntegerInputComp
                   feedbackStyle={feedbackStyle}
                   parentOnChangeFunc={this.handleAnswerOnChange}
+                  questionId={this.props.questionId}
                 />
               </div>
             </div>

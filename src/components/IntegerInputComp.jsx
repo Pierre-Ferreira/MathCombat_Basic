@@ -9,7 +9,17 @@ class IntegerInputComp extends React.Component {
     this.state = {
       inputValue: '',
       feedBackMsg: '',
+      questionId: '1'
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.questionId !== this.state.questionId) {
+      this.setState({
+        inputValue: '',
+        questionId: nextProps.questionId,
+      });
+    }
   }
 
   handleOnChange(e) {
