@@ -27,6 +27,7 @@ class MainQuestionComp extends React.Component {
   }
 
   componentDidMount() {
+    this.props.startGame(); //TODO: STARTGAME VALUE MUST BE SET ON GAME SETTINGS BUTTON CLICK.
     // componentDidMount is called by react when the component
     // has been rendered on the page. We can set the interval here:
     this.timer = setInterval(this.tick, 100);
@@ -116,8 +117,10 @@ class MainQuestionComp extends React.Component {
       // Restart the timer.
       this.restartTimer();
     } else {
-      //
+      // Clear the timer.
       clearInterval(this.timer);
+      // End the game.
+      this.props.endGame();
     }
   }
 

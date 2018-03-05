@@ -17,6 +17,8 @@ function mapDispatchToProps(dispatch) {
     }),
     updateCurrentAnswer: currentAnswer => dispatch({ type: 'UPDATE_CURRENT_ANSWER', currentAnswer }),
     saveGameScore: (numberOfCorrect, percentageCorrect) => dispatch({ type: 'SAVE_GAME_SCORE', numberOfCorrect, percentageCorrect }),
+    startGame: () => dispatch({ type: 'START_GAME' }),
+    endGame: () => dispatch({ type: 'END_GAME' }),
   };
 }
 

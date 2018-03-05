@@ -32,3 +32,11 @@ export const saveGameScore = (numberOfCorrect, percentageCorrect) => ({
   numberOfCorrect,
   percentageCorrect,
 });
+
+export const startGame = () => ({
+  type: types.START_GAME,
+});
+
+export const endGame = () => ({
+  type: types.END_GAME,
+});

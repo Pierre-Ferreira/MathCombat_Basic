@@ -7,7 +7,6 @@ import GameScoreContainer from '../containers/GameScoreContainer';
 const GameFeedbackComp = (props) => {
   return (
     <section id="game-feedback-area">
-      Game Feedback Comp
       <GameScoreContainer />
       <br />
       <QuestionsResultsContainer gameAnswers={props.gameAnswers} />

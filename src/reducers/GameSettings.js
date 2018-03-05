@@ -7,6 +7,7 @@ const initialState = {
   gameOperator: '',
   gameQuestionTime: '',
   currentAnswer: '',
+  gameInProgress: false,
 };
 
 const gameSettings = (state = initialState, action) => {
@@ -19,6 +20,17 @@ const gameSettings = (state = initialState, action) => {
         gameTable: action.gameTable,
         gameOperator: action.gameOperator,
         gameQuestionTime: action.gameQuestionTime,
+        gameInProgress: action.gameInProgress,
+      };
+    case types.START_GAME:
+      return {
+        ...state,
+        gameInProgress: true,
+      };
+    case types.END_GAME:
+      return {
+        ...state,
+        gameInProgress: false,
       };
     default:
       return state;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import GameSettingsComp from './components/GameSettingsComp';
 import GameFeedbackContainer from './containers/GameFeedbackContainer';
-import GameInteractionComp from './components/GameInteractionComp';
+import GameInteractionContainer from './containers/GameInteractionContainer';
 
 class App extends Component {
   render() {
@@ -13,7 +13,7 @@ class App extends Component {
         </section>
         <section id="lower-container-area">
           <GameFeedbackContainer />
-          <GameInteractionComp />
+          <GameInteractionContainer />
         </section>
       </div>
     );
