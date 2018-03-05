@@ -77,7 +77,13 @@ class MainQuestionComp extends React.Component {
       answerGiven,
       answeredCorrectly,
     };
-
+    // Calculate the game's score.
+    let { numberOfCorrect } = this.props;
+    if (answeredCorrectly) {
+      numberOfCorrect += 1;
+    }
+    const percentageCorrect = Math.round((numberOfCorrect / questionId) * 100);
+    this.props.saveGameScore(numberOfCorrect, percentageCorrect)
     this.props.saveAnswerInfo(answerObject)
     // Generate a new question.
     this.generateNewQuestion();
@@ -85,6 +91,7 @@ class MainQuestionComp extends React.Component {
 
   generateNewQuestion() {
     // Clear the current answer.
+    this.props.updateCurrentAnswer('');
     // Check if more questions need to be asked.
     if (this.state.questionId < this.state.totalNoOfQuestions) {
       // Create a multiplication question. (THIS NEEDS TO BE A FUNCTION THAT

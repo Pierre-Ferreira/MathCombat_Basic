@@ -26,3 +26,9 @@ export const updateCurrentAnswer = currentAnswer => ({
   type: types.UPDATE_CURRENT_ANSWER,
   currentAnswer,
 });
+
+export const saveGameScore = (numberOfCorrect, percentageCorrect) => ({
+  type: types.SAVE_GAME_SCORE,
+  numberOfCorrect,
+  percentageCorrect,
+});
