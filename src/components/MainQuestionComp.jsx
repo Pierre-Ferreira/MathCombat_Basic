@@ -10,6 +10,8 @@ class MainQuestionComp extends React.Component {
     this.handleAnswerSubmit = this.handleAnswerSubmit.bind(this);
     this.evaluateAnswer = this.evaluateAnswer.bind(this);
     this.generateNewQuestion = this.generateNewQuestion.bind(this);
+    this.generateMultiplicationQuestion = this.generateMultiplicationQuestion.bind(this);
+    this.generatedDivisionQuestion = this.generatedDivisionQuestion.bind(this);
     this.restartTimer = this.restartTimer.bind(this);
     this.tick = this.tick.bind(this);
     const { gameQuestionTime } = this.props;
@@ -35,7 +37,7 @@ class MainQuestionComp extends React.Component {
     this.generateNewQuestion();
   }
 
-  componentWillUnmount() {
+  componentWillUnmount() { // TODO: DO componentWillUnmount FOR ALL COMPONENTS.
     // This method is called immediately before the component is removed
     // from the page and destroyed. We can clear the interval here:
     clearInterval(this.timer);
@@ -95,24 +97,15 @@ class MainQuestionComp extends React.Component {
     this.props.updateCurrentAnswer('');
     // Check if more questions need to be asked.
     if (this.state.questionId < this.state.totalNoOfQuestions) {
-      // Create a multiplication question. (THIS NEEDS TO BE A FUNCTION THAT
-      // CAN HANDLE DIVIDE, PLUS, MINUS, ETC).
-      // Generate a random number between 0 and 12.
-      const lowerLimit = 0;
-      const upperLimit = 12;
-      const randomNum = Math.floor(Math.random() * ((upperLimit - lowerLimit) + 1)) + lowerLimit;
-      const correctAnswer = randomNum * this.state.gameTable;
-      this.setState({ correctAnswer });
-
-      const randomSwap = Math.floor(Math.random() * 2);
-      if (randomSwap) {
-        this.setState({ questionOperand1: this.state.gameTable });
-        this.setState({ questionOperand2: randomNum });
-      } else {
-        this.setState({ questionOperand1: randomNum });
-        this.setState({ questionOperand2: this.state.gameTable });
+      // Check if the operator is multiplication or division.
+      if (this.props.gameOperator === 'x') {
+        // Create a multiplication question.
+        this.generateMultiplicationQuestion();
+      } else if (this.props.gameOperator === '÷') {
+        // Create a division quesiton.
+        this.generatedDivisionQuestion();
       }
-
+      // Set the questionId.
       this.setState({ questionId: this.state.questionId + 1 });
       // Restart the timer.
       this.restartTimer();
@@ -122,6 +115,33 @@ class MainQuestionComp extends React.Component {
       // End the game.
       this.props.endGame();
     }
+  }
+
+  generateMultiplicationQuestion() {
+    const lowerLimit = 0;
+    const upperLimit = 12;
+    const randomNum = Math.floor(Math.random() * ((upperLimit - lowerLimit) + 1)) + lowerLimit;
+    const correctAnswer = randomNum * this.state.gameTable;
+    this.setState({ correctAnswer });
+
+    const randomSwap = Math.floor(Math.random() * 2);
+    if (randomSwap) {
+      this.setState({ questionOperand1: this.state.gameTable });
+      this.setState({ questionOperand2: randomNum });
+    } else {
+      this.setState({ questionOperand1: randomNum });
+      this.setState({ questionOperand2: this.state.gameTable });
+    }
+  }
+
+  generatedDivisionQuestion() {
+    const lowerLimit = 0;
+    const upperLimit = 12;
+    const randomNum = Math.floor(Math.random() * ((upperLimit - lowerLimit) + 1)) + lowerLimit;
+    const questionOperand1 = randomNum * this.state.gameTable;
+    this.setState({ correctAnswer: randomNum });
+    this.setState({ questionOperand1 });
+    this.setState({ questionOperand2: this.state.gameTable });
   }
 
   restartTimer() {

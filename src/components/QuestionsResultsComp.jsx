@@ -18,7 +18,8 @@ const QuestionsResultsComp = (props) => {
             paddingLeft: '5px',
           };
           const answerGiven = (value.answerGiven) ? value.answerGiven : '_';
-          const questionString = `${value.questionId}) ${value.questionOperand1} x
+          const questionString = `${value.questionId}) ${value.questionOperand1}
+                        ${props.gameOperator}
                         ${value.questionOperand2} = ${answerGiven} (${value.correctAnswer})`;
           return (
             <li key={value.questionId} style={liStyle}>
