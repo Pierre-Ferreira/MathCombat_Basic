@@ -7,8 +7,25 @@ const QuestionsResultsComp = (props) => {
   return (
     <section id="questions-results-area">
       <ul className="question-results-list">
-        {props.gameAnswers.map((value, index) =>
-          <li key={index} style={{ backgroundColor: value.answeredCorrectly ? 'greenyellow' : 'red' }}>{value.questionId}) {value.questionOperand1} x {value.questionOperand2} = {value.answerGiven} ({value.correctAnswer})</li>)
+        {props.gameAnswers.map((value) => {
+          const liBackgroundColor = value.answeredCorrectly ? 'greenyellow' : 'red';
+          const liStyle = {
+            backgroundColor: liBackgroundColor,
+            margin: '0px 0px 1px 0px',
+            borderColor: 'black',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            paddingLeft: '5px',
+          };
+          const answerGiven = (value.answerGiven) ? value.answerGiven : '_';
+          const questionString = `${value.questionId}) ${value.questionOperand1} x
+                        ${value.questionOperand2} = ${answerGiven} (${value.correctAnswer})`;
+          return (
+            <li key={value.questionId} style={liStyle}>
+              {questionString}
+            </li>
+          );
+          })
         }
       </ul>
     </section>

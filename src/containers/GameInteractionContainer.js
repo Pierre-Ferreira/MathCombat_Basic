@@ -6,6 +6,7 @@ function mapStateToProps(state) {
     numberOfCorrect: state.gameScore.numberOfCorrect,
     percentageCorrect: state.gameScore.percentageCorrect,
     gameInProgress: state.gameSettings.gameInProgress,
+    displayWelcomeScreen: state.gameSettings.displayWelcomeScreen,
   };
 }
 

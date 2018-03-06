@@ -9,6 +9,9 @@ const gameAnswers = (state = [], action) => {
         action.answerObject,
       ];
     }
+    case types.CLEAR_GAME: {
+      state = []
+    }
     default:
       return state;
   }

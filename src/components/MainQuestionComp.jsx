@@ -12,14 +12,14 @@ class MainQuestionComp extends React.Component {
     this.generateNewQuestion = this.generateNewQuestion.bind(this);
     this.restartTimer = this.restartTimer.bind(this);
     this.tick = this.tick.bind(this);
-    const gameQuestionTime = 4;
+    const { gameQuestionTime } = this.props;
     this.state = {
       timerCount: gameQuestionTime,
       gameQuestionTime,
-      totalNoOfQuestions: 4, // TODO: THIS MUST BE UPDATED AT SAVE_GAME_SETTINGS.
+      totalNoOfQuestions: this.props.gameNoOfQuestions,
       questionId: 0,
-      gameTable: 8, //TODO: SHOULD COME FROM REDUX. AND MUST BE UPDATED AT SAVE_GAME_SETTINGS.
-      gameOperator: 'x', //TODO: SHOULD COME FROM REDUX. AND MUST BE UPDATED AT SAVE_GAME_SETTINGS.
+      gameTable: this.props.gameTable,
+      gameOperator: this.props.gameOperator,
       questionOperand1: '',
       questionOperand2: '',
       correctAnswer: '',
@@ -27,7 +27,7 @@ class MainQuestionComp extends React.Component {
   }
 
   componentDidMount() {
-    this.props.startGame(); //TODO: STARTGAME VALUE MUST BE SET ON GAME SETTINGS BUTTON CLICK.
+    // this.props.startGame(); //TODO: STARTGAME VALUE MUST BE SET ON GAME SETTINGS BUTTON CLICK.
     // componentDidMount is called by react when the component
     // has been rendered on the page. We can set the interval here:
     this.timer = setInterval(this.tick, 100);

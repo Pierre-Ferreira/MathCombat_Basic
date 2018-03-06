@@ -3,22 +3,25 @@ import PropTypes from 'prop-types';
 // import MainQuestionComp from './MainQuestionComp';
 import MainQuestionContainer from '../containers/MainQuestionContainer';
 import GameOverContainer from '../containers/GameOverContainer';
+import WelcomeScreenComp from './WelcomeScreenComp';
 
 class GameInteractionComp extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    this.props.startGame(); //TODO: STARTGAME VALUE MUST BE SET ON GAME SETTINGS BUTTON CLICK.
-  }
+
   render() {
+    let displayComp = '';
+    if (this.props.displayWelcomeScreen) {
+      displayComp = <WelcomeScreenComp />
+    } else{
+      displayComp = (this.props.gameInProgress) ?
+        <MainQuestionContainer /> :
+        <GameOverContainer />
+    }
     return (
       <section id="game-interaction-area">
-        {this.props.gameInProgress ?
-          <MainQuestionContainer /> :
-          <GameOverContainer />
-        }
-
+        {displayComp}
       </section>
     )
   }

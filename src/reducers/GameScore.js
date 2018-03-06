@@ -13,6 +13,9 @@ const gameScore = (state = initialState, action) => {
         numberOfCorrect: action.numberOfCorrect,
         percentageCorrect: action.percentageCorrect,
       };
+    case types.CLEAR_GAME: {
+      state = initialState;
+    }
     default:
       return state;
   }

@@ -15,6 +15,10 @@ body {
     height: 100vh;
 }
 
+.full-width {
+  width: -webkit-fill-available;
+}
+
 #upper-container-area {
     grid-area: upper-container-area;
     bottom: 0;
