@@ -24,10 +24,10 @@ class CurrentQuestionComp extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-1 col-sm-offset-1" />
-              <div className="col-sm-2">{this.props.questionId})</div>
-              <div className="col-sm-1">{this.props.questionOperand1}</div>
-              <div className="col-sm-1">{this.props.gameOperator}</div>
-              <div className="col-sm-1">{this.props.questionOperand2}</div>
+              <div className="col-sm-2" align="center">{this.props.questionId})</div>
+              <div className="col-sm-2" align="center">{this.props.questionOperand1}</div>
+              <div className="col-sm-1" align="center">{this.props.gameOperator}</div>
+              <div className="col-sm-2" align="center">{this.props.questionOperand2}</div>
               <div className="col-sm-1">=</div>
               <div className="col-sm-2">
                 <IntegerInputComp

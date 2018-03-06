@@ -29,7 +29,7 @@ const gameSettings = (state = initialState, action) => {
       return {
         ...state,
         gameInProgress: true,
-        gameStartButtonText: 'BESIG...',
+        gameStartButtonText: 'WAT KYK JY? FOKUS OP DIE VRAE..',
         gameStartButtonDisabled: true,
         displayWelcomeScreen: false,
       };

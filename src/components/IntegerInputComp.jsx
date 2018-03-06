@@ -81,6 +81,7 @@ class IntegerInputComp extends React.Component {
               value={this.state.inputValue}
               onChange={this.handleOnChange}
               autoComplete="off"
+              autoFocus
             />
           </div>
           <div style={this.props.feedbackStyle}>
