@@ -40,7 +40,7 @@ class GameSettingsComp extends React.Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-2 col-md-3 col-sm-4 offset-lg-3 offset-md-2">
-                <label>Tafel?</label>
+                <label>Tafel</label>
                 <select
                   className="selectpicker"
                   onChange={this.handleTableChange}
