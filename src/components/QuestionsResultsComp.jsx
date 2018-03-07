@@ -4,6 +4,10 @@ import './QuestionsResultsComp.css'
 
 
 const QuestionsResultsComp = (props) => {
+  // Sort the array by decending questionId.
+  props.gameAnswers.sort((a, b) => {
+    return b.questionId - a.questionId;
+  });
   return (
     <section id="questions-results-area">
       <ul className="question-results-list">
