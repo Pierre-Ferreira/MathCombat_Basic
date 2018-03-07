@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Sound from 'react-sound';
 import QuestionCountdownComp from './QuestionCountdownComp';
 // import CurrentQuestionComp from './CurrentQuestionComp'
 import CurrentQuestionContainer from '../containers/CurrentQuestionContainer';
@@ -25,11 +26,11 @@ class MainQuestionComp extends React.Component {
       questionOperand1: '',
       questionOperand2: '',
       correctAnswer: '',
+      playWrongAnswerSound: false,
     };
   }
 
   componentDidMount() {
-    // this.props.startGame(); //TODO: STARTGAME VALUE MUST BE SET ON GAME SETTINGS BUTTON CLICK.
     // componentDidMount is called by react when the component
     // has been rendered on the page. We can set the interval here:
     this.timer = setInterval(this.tick, 100);
@@ -59,10 +60,12 @@ class MainQuestionComp extends React.Component {
   evaluateAnswer() {
     // Check if the answer is correct.
     let answeredCorrectly = 'false';
+    this.setState({ playWrongAnswerSound: false });
     if (this.state.correctAnswer === this.props.currentAnswer) {
       answeredCorrectly = true;
     } else {
       answeredCorrectly = false;
+      this.setState({ playWrongAnswerSound: true });
     }
     const { questionId } = this.state;
     const { questionOperand1 } = this.state;
@@ -156,6 +159,12 @@ class MainQuestionComp extends React.Component {
   }
 
   render() {
+    let soundStatus = Sound.status.STOP;
+    if (this.state.playWrongAnswerSound) {
+      soundStatus = Sound.status.PLAYING;
+    } else {
+      soundStatus = Sound.status.STOP;
+    }
     return (
       <section id="main-question-area">
         <QuestionCountdownComp timerCount={this.state.timerCount} />
@@ -165,6 +174,10 @@ class MainQuestionComp extends React.Component {
           gameOperator={this.state.gameOperator}
           questionOperand2={this.state.questionOperand2}
           onSubmitFn={this.handleAnswerSubmit}
+        />
+        <Sound
+          url="sounds/Wrong Answer Alarm Buzzer.wav"
+          playStatus={soundStatus}
         />
       </section>
     );
