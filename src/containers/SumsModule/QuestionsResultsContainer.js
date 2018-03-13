@@ -5,7 +5,7 @@ function mapStateToProps(state) {
   return {
     gameAnswers: state.gameAnswers,
     currentAnswer: state.gameCurrentAnswer.currentAnswer,
-    gameType: state.gameSettings.gameType
+    // questionOperator: state.gameSettings.questionOperator,
   };
 }
 

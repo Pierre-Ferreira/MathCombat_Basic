@@ -8,7 +8,7 @@ class GameSettingsComp extends React.Component {
     super(props);
     this.hangleGameSettingsSubmit = this.hangleGameSettingsSubmit.bind(this);
     this.handleTableChange = this.handleTableChange.bind(this);
-    this.handleOperatorChange = this.handleOperatorChange.bind(this);
+    this.handleGameTypeChange = this.handleGameTypeChange.bind(this);
     this.handleQuestionTimeChange = this.handleQuestionTimeChange.bind(this);
     this.state = {
       gameTable: 10,
@@ -19,7 +19,7 @@ class GameSettingsComp extends React.Component {
   handleTableChange(e) {
     this.setState({ gameTable: e.target.value });
   }
-  handleOperatorChange(e) {
+  handleGameTypeChange(e) {
     this.setState({ gameType: e.target.value });
   }
   handleQuestionTimeChange(e) {
@@ -67,7 +67,7 @@ class GameSettingsComp extends React.Component {
                 <label>x of ÷</label>
                 <select
                   className="selectpicker"
-                  onChange={this.handleOperatorChange}
+                  onChange={this.handleGameTypeChange}
                   value={this.state.gameType}
                 >
                   <optgroup label="Maal">

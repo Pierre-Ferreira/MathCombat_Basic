@@ -7,21 +7,22 @@ class GameSettingsComp extends React.Component {
   constructor(props) {
     super(props);
     this.hangleGameSettingsSubmit = this.hangleGameSettingsSubmit.bind(this);
-    this.handleTableChange = this.handleTableChange.bind(this);
-    this.handleOperatorChange = this.handleOperatorChange.bind(this);
+    this.handleUpperRangeLimitChange = this.handleUpperRangeLimitChange.bind(this);
+    this.handleGameTypeChange = this.handleGameTypeChange.bind(this);
     this.handleQuestionTimeChange = this.handleQuestionTimeChange.bind(this);
     this.state = {
       gameUpperRangeLimit: 30,
-      gameType: '+',
+      gameType: 'plain_addition',
       gameQuestionTime: 7,
     };
   }
-  handleTableChange(e) {
+  handleUpperRangeLimitChange(e) {
     this.setState({ gameUpperRangeLimit: e.target.value });
   }
-  handleOperatorChange(e) {
+  handleGameTypeChange(e) {
     this.setState({ gameType: e.target.value });
   }
+
   handleQuestionTimeChange(e) {
     this.setState({ gameQuestionTime: e.target.value });
   }
@@ -43,17 +44,17 @@ class GameSettingsComp extends React.Component {
                 <label>+ of -</label>
                 <select
                   className="selectpicker"
-                  onChange={this.handleOperatorChange}
+                  onChange={this.handleGameTypeChange}
                   value={this.state.gameType}
                 >
                   <optgroup label="Optel">
-                    <option>+</option>
+                    <option value="plain_addition">+</option>
                   </optgroup>
                   <optgroup label="Aftrek">
-                    <option>-</option>
+                    <option value="plain_subtraction">-</option>
                   </optgroup>
                   <optgroup label="Gemeng">
-                    <option>+ && -</option>
+                    <option value="mixed_addition_subtraction">+ && -</option>
                   </optgroup>
                 </select>
               </div>
@@ -61,7 +62,7 @@ class GameSettingsComp extends React.Component {
                 <label>Tafel</label>
                 <select
                   className="selectpicker"
-                  onChange={this.handleTableChange}
+                  onChange={this.handleUpperRangeLimitChange}
                   value={this.state.gameUpperRangeLimit}
                 >
                   <optgroup label="Bo Limiet">

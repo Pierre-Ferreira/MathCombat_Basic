@@ -9,6 +9,7 @@ const generateAdditionQuestion = ({ gameUpperRangeLimit }) => {
   // Generate a addition question.
   let questionOperand1 = '';
   let questionOperand2 = '';
+  const questionOperator = '+';
   let correctAnswer = '';
   // Generate a random Operand within the given limits.
   questionOperand1 = Math.floor(Math.random() * ((gameUpperRangeLimit - 0) + 1)) + 0;
@@ -20,6 +21,7 @@ const generateAdditionQuestion = ({ gameUpperRangeLimit }) => {
     correctAnswer,
     questionOperand1,
     questionOperand2,
+    questionOperator,
   };
 };
 
@@ -29,6 +31,7 @@ const generatedSubtractQuestion = ({ gameUpperRangeLimit }) => {
   let questionOperand1 = '';
   let questionOperand2 = '';
   let correctAnswer = '';
+  const questionOperator = '-';
   // Generate a random Operand within the given limits.
   questionOperand1 = Math.floor(Math.random() * ((gameUpperRangeLimit - 0) + 1)) + 0;
   // Generate a random Operand within the given limits.
@@ -39,6 +42,7 @@ const generatedSubtractQuestion = ({ gameUpperRangeLimit }) => {
     correctAnswer,
     questionOperand1,
     questionOperand2,
+    questionOperator,
   };
 };
 
@@ -49,13 +53,13 @@ const generateNewQuestion = ({
     gameUpperRangeLimit,
   };
   let questionGeneratedObj = {};
-  if (gameType === '+') {
+  if (gameType === 'plain_addition') {
     // Create a addition question.
     questionGeneratedObj = generateAdditionQuestion(questionGeneratorArguments);
-  } else if (gameType === '-') {
+  } else if (gameType === 'plain_subtraction') {
     // Create a subraction question.
     questionGeneratedObj = generatedSubtractQuestion(questionGeneratorArguments);
-  } else if (gameType === '+ && -') {
+  } else if (gameType === 'mixed_addition_subtraction') {
     // Generate random operands with a random operator within the given limits.
     const randomBoolean = Math.floor(Math.random() * 2);
     if (randomBoolean) {
@@ -135,12 +139,14 @@ class MainQuestionComp extends React.Component {
     const { questionOperand1 } = this.state;
     const { questionOperand2 } = this.state;
     const { correctAnswer } = this.state;
+    const { questionOperator } = this.state;
     const answerGiven = this.props.currentAnswer;
     // Save the answer info.
     const answerObject = {
       questionId,
       questionOperand1,
       questionOperand2,
+      questionOperator,
       correctAnswer,
       answerGiven,
       answeredCorrectly,
@@ -170,11 +176,12 @@ class MainQuestionComp extends React.Component {
       };
       questionGeneratedObj = generateNewQuestion(questionGeneratorArguments)
       // Extract the new question info.
-      const { correctAnswer, questionOperand1, questionOperand2 } = questionGeneratedObj;
+      const { correctAnswer, questionOperand1, questionOperand2, questionOperator } = questionGeneratedObj;
       // Update the state with the question generated.
       this.setState({ correctAnswer });
       this.setState({ questionOperand1 });
       this.setState({ questionOperand2 });
+      this.setState({ questionOperator });
       // Set the questionId.
       this.setState({ questionId: this.state.questionId + 1 });
       // Restart the timer.
@@ -211,7 +218,7 @@ class MainQuestionComp extends React.Component {
         <CurrentQuestionContainer
           questionId={this.state.questionId}
           questionOperand1={this.state.questionOperand1}
-          gameType={this.state.gameType}
+          questionOperator={this.state.questionOperator}
           questionOperand2={this.state.questionOperand2}
           onSubmitFn={this.handleAnswerSubmit}
         />
