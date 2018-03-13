@@ -1,0 +1,13 @@
+#sums-main-container-area #game-settings-area {
+  margin-top: 20px;
+  background-color: red;
+}
+#sums-main-container-area #game-settings-area .btn-custom {
+  margin: 15px;
+  width: -webkit-fill-available;
+}
+#sums-main-container-area #game-settings-area .selectpicker {
+  width: -webkit-fill-available;
+  height: 60%;
+  font-size: larger;
+}

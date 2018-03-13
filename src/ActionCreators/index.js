@@ -5,13 +5,15 @@ import * as types from '../constants/ActionTypes';
 export const saveGameSettings = (
   gameNoOfQuestions,
   gameTable,
-  gameOperator,
+  gameUpperRangeLimit,
+  gameType,
   gameQuestionTime,
 ) => ({
   type: types.SAVE_GAME_SETTINGS,
   gameNoOfQuestions,
   gameTable,
-  gameOperator,
+  gameUpperRangeLimit,
+  gameType,
   gameQuestionTime,
 });
 

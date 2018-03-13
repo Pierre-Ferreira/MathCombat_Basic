@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import gameSettings from './GameSettings';
 import gameAnswers from './GameAnswers';
 import gameCurrentAnswer from './GameCurrentAnswer';
@@ -9,6 +10,7 @@ const gameInfo = combineReducers({
   gameAnswers,
   gameCurrentAnswer,
   gameScore,
+  routing: routerReducer,
 });
 
 export default gameInfo;

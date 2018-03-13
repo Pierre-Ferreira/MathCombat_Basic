@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom'
 import './App.css';
-import GameSettingsContainer from './containers/GameSettingsContainer';
-import GameFeedbackContainer from './containers/GameFeedbackContainer';
-import GameInteractionContainer from './containers/GameInteractionContainer';
+import TablesMainComp from './components/TablesModule/TablesMainComp';
+import SumsMainComp from './components/SumsModule/SumsMainComp';
+import NavbarComp from './components/NavbarComp/NavbarComp';
 
-class App extends Component {
-  render() {
-    return (
-      <div id="main-container-area">
-        <div className='container-fluid'>
-          <div className='row'>
-            <div className='col-xs-12 full-width'>
-              <section id="upper-container-area">
-                <GameSettingsContainer />
-              </section>
-              <section id="lower-container-area">
-                <GameFeedbackContainer />
-                <GameInteractionContainer />
-              </section>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div id="main-app-area">
+    <NavbarComp />
+    <main>
+      <Route exact path="/tables" component={TablesMainComp} />
+      <Route exact path="/sums" component={SumsMainComp} />
+    </main>
+  </div>
+
+);
+
 
 export default App;

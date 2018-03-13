@@ -1,0 +1,14 @@
+
+#table-main-container-area #game-settings-area {
+  margin-top: 20px;
+  background-color: blue;
+}
+#table-main-container-area #game-settings-area .btn-custom {
+  margin: 15px;
+  width: -webkit-fill-available;
+}
+#table-main-container-area #game-settings-area .selectpicker {
+  width: -webkit-fill-available;
+  height: 60%;
+  font-size: larger;
+}
