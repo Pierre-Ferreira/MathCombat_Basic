@@ -97,8 +97,4 @@ IntegerInputComp.propTypes = {
   parentOnChangeFunc: PropTypes.func.isRequired,
 };
 
-IntegerInputComp.defaultProps = {
-
-};
-
 export default IntegerInputComp;

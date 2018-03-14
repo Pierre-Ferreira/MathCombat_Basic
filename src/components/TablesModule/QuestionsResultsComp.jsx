@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './QuestionsResultsComp.css'
+import './QuestionsResultsComp.css';
 
 
 const QuestionsResultsComp = (props) => {
   // Sort the array by decending questionId.
-  props.gameAnswers.sort((a, b) => {
-    return b.questionId - a.questionId;
-  });
+  props.gameAnswers.sort((a, b) => b.questionId - a.questionId);
+
   return (
     <section id="questions-results-area">
       <ul className="question-results-list">
@@ -35,6 +34,10 @@ const QuestionsResultsComp = (props) => {
       </ul>
     </section>
   );
+};
+
+QuestionsResultsComp.propTypes = {
+  gameAnswers: PropTypes.arrayOf.isRequired,
 };
 
 export default QuestionsResultsComp;

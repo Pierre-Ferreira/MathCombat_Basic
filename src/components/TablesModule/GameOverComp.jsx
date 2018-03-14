@@ -19,5 +19,8 @@ const GameOverComp = (props) => {
   );
 };
 
-// TODO: SORT OUT ALL COMPONENTS' PropTypes.
+GameOverComp.propTypes = {
+  percentageCorrect: PropTypes.number.isRequired,
+};
+
 export default GameOverComp;

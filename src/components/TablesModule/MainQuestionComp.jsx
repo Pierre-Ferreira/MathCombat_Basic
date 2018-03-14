@@ -264,11 +264,12 @@ class MainQuestionComp extends React.Component {
 }
 
 MainQuestionComp.propTypes = {
-  gameNoOfQuestions: PropTypes.number,
-  numberOfCorrect: PropTypes.number,
-  gameTable: PropTypes.number,
-  gameQuestionTime: PropTypes.number,
-  currentAnswer: PropTypes.number,
+  gameNoOfQuestions: PropTypes.number.isRequired,
+  numberOfCorrect: PropTypes.number.isRequired,
+  gameTable: PropTypes.number.isRequired,
+  gameQuestionTime: PropTypes.number.isRequired,
+  gameType: PropTypes.string.isRequired,
+  currentAnswer: PropTypes.number.isRequired,
   saveAnswerInfo: PropTypes.func.isRequired,
   saveGameScore: PropTypes.func.isRequired,
   updateCurrentAnswer: PropTypes.func.isRequired,

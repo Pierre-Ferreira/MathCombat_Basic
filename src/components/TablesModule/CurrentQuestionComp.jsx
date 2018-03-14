@@ -49,7 +49,6 @@ CurrentQuestionComp.propTypes = {
   questionOperand1: PropTypes.number.isRequired,
   questionOperand2: PropTypes.number.isRequired,
   questionOperator: PropTypes.string.isRequired,
-  // questionOperand: PropTypes.number.isRequired,
   onSubmitFn: PropTypes.func.isRequired,
   updateCurrentAnswer: PropTypes.func.isRequired,
 };

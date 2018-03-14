@@ -12,5 +12,9 @@ const GameScoreComp = (props) => {
   );
 };
 
-// TODO: SORT OUT ALL COMPONENTS' PropTypes.
+GameScoreComp.propTypes = {
+  numberOfCorrect: PropTypes.number.isRequired,
+  percentageCorrect: PropTypes.number.isRequired,
+};
+
 export default GameScoreComp;

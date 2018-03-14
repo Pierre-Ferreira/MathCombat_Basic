@@ -45,12 +45,12 @@ class IntegerInputComp extends React.Component {
         newText = `-${newText}`;
       }
       // Check if value is bigger than min value.
-      const minValue = (this.props.minValue) ? this.props.minValue : Number.NEGATIVE_INFINITY
+      const minValue = (this.props.minValue) ? this.props.minValue : Number.NEGATIVE_INFINITY;
       if (newText < minValue && newText.length !== 0) {
         this.setState({ feedBackMsg: `Getal moet '${minValue}' of groter wees!` });
       }
       // Check if value is smaller than max value.
-      const maxValue = (this.props.maxValue) ? this.props.maxValue : Number.POSITIVE_INFINITY
+      const maxValue = (this.props.maxValue) ? this.props.maxValue : Number.POSITIVE_INFINITY;
       if (newText > maxValue && newText.length !== 0) {
         this.setState({ feedBackMsg: `Getal moet '${maxValue}' of kleiner wees!` });
       }
@@ -66,12 +66,7 @@ class IntegerInputComp extends React.Component {
   render() {
     return (
       <div id="interger-input-main">
-        <div className="">
-          {!this.props.title ? null :
-              <div className="">
-                <label className=""> {this.props.title}</label>
-              </div>
-          }
+        <div>
           <div>
             <input
               id="inputlg"
@@ -94,16 +89,12 @@ class IntegerInputComp extends React.Component {
 }
 
 IntegerInputComp.propTypes = {
-  feedbackStyle: PropTypes.object.isRequired,
-  questionId: PropTypes.number,
-  name: PropTypes.string,
-  title: PropTypes.string,
+  minValue: PropTypes.number.isRequired,
+  maxValue: PropTypes.number.isRequired,
+  feedbackStyle: PropTypes.shape.isRequired,
+  questionId: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
   parentOnChangeFunc: PropTypes.func.isRequired,
-};
-
-IntegerInputComp.defaultProps = {
-  name: 'Stranger',
-  title: '',
 };
 
 export default IntegerInputComp;
