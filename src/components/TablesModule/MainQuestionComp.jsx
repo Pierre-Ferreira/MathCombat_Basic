@@ -11,18 +11,25 @@ const generateMultiplicationQuestion = ({ lowerLimit, upperLimit, gameTable }) =
   let questionOperand2 = '';
   const questionOperator = 'x';
   let correctAnswer = '';
+  let questionTable = '';
   // Generate a random number within the given limits.
   const randomNum = Math.floor(Math.random() * ((upperLimit - lowerLimit) + 1)) + lowerLimit;
+  if (gameTable === 'all') {
+    // Generate a random gameTable within the given limits.
+    questionTable = Math.floor(Math.random() * ((upperLimit - lowerLimit) + 1)) + lowerLimit;
+  } else {
+    questionTable = gameTable;
+  }
   // Calculate the correct answer.
-  correctAnswer = randomNum * gameTable;
+  correctAnswer = randomNum * questionTable;
   // Swap the operands around to convey that multiplication is commutative.
   const randomSwap = Math.floor(Math.random() * 2);
   if (randomSwap) {
-    questionOperand1 = gameTable;
+    questionOperand1 = questionTable;
     questionOperand2 = randomNum;
   } else {
     questionOperand1 = randomNum;
-    questionOperand2 = gameTable;
+    questionOperand2 = questionTable;
   }
   return {
     correctAnswer,
@@ -38,14 +45,25 @@ const generatedDivisionQuestion = ({ lowerLimit, upperLimit, gameTable }) => {
   let questionOperand1 = '';
   const questionOperator = '÷';
   let correctAnswer = '';
+  let questionTable = '';
+  // // Generate a random number within the given limits.
+  // correctAnswer = Math.floor(Math.random() * ((upperLimit - lowerLimit) + 1)) + lowerLimit;
+  // // Calculate the correct answer.
+  // questionOperand1 = correctAnswer * gameTable;
   // Generate a random number within the given limits.
   correctAnswer = Math.floor(Math.random() * ((upperLimit - lowerLimit) + 1)) + lowerLimit;
+  if (gameTable === 'all') {
+    // Generate a random gameTable within the given limits.
+    questionTable = Math.floor(Math.random() * ((upperLimit - lowerLimit) + 1)) + lowerLimit;
+  } else {
+    questionTable = gameTable;
+  }
   // Calculate the correct answer.
-  questionOperand1 = correctAnswer * gameTable;
+  questionOperand1 = correctAnswer * questionTable;
   return {
     correctAnswer,
     questionOperand1,
-    questionOperand2: gameTable,
+    questionOperand2: questionTable,
     questionOperator,
   };
 };
