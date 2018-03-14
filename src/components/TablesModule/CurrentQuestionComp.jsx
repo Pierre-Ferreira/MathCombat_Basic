@@ -26,7 +26,7 @@ class CurrentQuestionComp extends React.Component {
               <div className="col-sm-1 col-sm-offset-1" />
               <div className="col-sm-2" align="center">{this.props.questionId})</div>
               <div className="col-sm-2" align="center">{this.props.questionOperand1}</div>
-              <div className="col-sm-1" align="center">{this.props.gameType}</div>
+              <div className="col-sm-1" align="center">{this.props.questionOperator}</div>
               <div className="col-sm-2" align="center">{this.props.questionOperand2}</div>
               <div className="col-sm-1">=</div>
               <div className="col-sm-2">
@@ -48,7 +48,7 @@ CurrentQuestionComp.propTypes = {
   questionId: PropTypes.number.isRequired,
   questionOperand1: PropTypes.number.isRequired,
   questionOperand2: PropTypes.number.isRequired,
-  gameType: PropTypes.string.isRequired,
+  questionOperator: PropTypes.string.isRequired,
   // questionOperand: PropTypes.number.isRequired,
   onSubmitFn: PropTypes.func.isRequired,
   updateCurrentAnswer: PropTypes.func.isRequired,

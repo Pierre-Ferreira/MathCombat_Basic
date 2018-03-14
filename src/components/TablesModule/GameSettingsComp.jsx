@@ -12,8 +12,8 @@ class GameSettingsComp extends React.Component {
     this.handleQuestionTimeChange = this.handleQuestionTimeChange.bind(this);
     this.state = {
       gameTable: 10,
-      gameType: 'x',
-      gameQuestionTime: 7,
+      gameType: 'plain_multiplication',
+      gameQuestionTime: 6,
     };
   }
   handleTableChange(e) {
@@ -46,6 +46,9 @@ class GameSettingsComp extends React.Component {
                   onChange={this.handleTableChange}
                   value={this.state.gameTable}
                 >
+                  <optgroup label="Gemeng">
+                    <option value="all">0 - 12</option>
+                  </optgroup>
                   <optgroup label="Tafel">
                     <option>12</option>
                     <option>11</option>
@@ -71,10 +74,13 @@ class GameSettingsComp extends React.Component {
                   value={this.state.gameType}
                 >
                   <optgroup label="Maal">
-                    <option>x</option>
+                    <option value="plain_multiplication">x</option>
                   </optgroup>
                   <optgroup label="Deel">
-                    <option>÷</option>
+                    <option value="plain_division">÷</option>
+                  </optgroup>
+                  <optgroup label="Gemeng">
+                    <option value="mixed_multiplication_division">x && ÷</option>
                   </optgroup>
                 </select>
               </div>
@@ -121,5 +127,17 @@ class GameSettingsComp extends React.Component {
     );
   }
 }
+
+GameSettingsComp.propTypes = {
+  // gameNoOfQuestions: PropTypes.number,
+  // numberOfCorrect: PropTypes.number,
+  // gameTable: PropTypes.number,
+  // gameQuestionTime: PropTypes.number,
+  // currentAnswer: PropTypes.number,
+  // saveAnswerInfo: PropTypes.func.isRequired,
+  // saveGameScore: PropTypes.func.isRequired,
+  // updateCurrentAnswer: PropTypes.func.isRequired,
+  // endGame: PropTypes.func.isRequired,
+};
 
 export default GameSettingsComp;

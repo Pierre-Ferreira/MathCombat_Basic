@@ -9,6 +9,7 @@ const generateMultiplicationQuestion = ({ lowerLimit, upperLimit, gameTable }) =
   // Generate a multiplication question.
   let questionOperand1 = '';
   let questionOperand2 = '';
+  const questionOperator = 'x';
   let correctAnswer = '';
   // Generate a random number within the given limits.
   const randomNum = Math.floor(Math.random() * ((upperLimit - lowerLimit) + 1)) + lowerLimit;
@@ -27,6 +28,7 @@ const generateMultiplicationQuestion = ({ lowerLimit, upperLimit, gameTable }) =
     correctAnswer,
     questionOperand1,
     questionOperand2,
+    questionOperator,
   };
 };
 
@@ -34,6 +36,7 @@ const generateMultiplicationQuestion = ({ lowerLimit, upperLimit, gameTable }) =
 const generatedDivisionQuestion = ({ lowerLimit, upperLimit, gameTable }) => {
   // Generate a division question.
   let questionOperand1 = '';
+  const questionOperator = '÷';
   let correctAnswer = '';
   // Generate a random number within the given limits.
   correctAnswer = Math.floor(Math.random() * ((upperLimit - lowerLimit) + 1)) + lowerLimit;
@@ -43,6 +46,7 @@ const generatedDivisionQuestion = ({ lowerLimit, upperLimit, gameTable }) => {
     correctAnswer,
     questionOperand1,
     questionOperand2: gameTable,
+    questionOperator,
   };
 };
 
@@ -55,12 +59,22 @@ const generateNewQuestion = ({
     gameTable,
   };
   let questionGeneratedObj = {};
-  if (gameType === 'x') {
+  if (gameType === 'plain_multiplication') {
     // Create a multiplication question.
     questionGeneratedObj = generateMultiplicationQuestion(questionGeneratorArguments);
-  } else if (gameType === '÷') {
+  } else if (gameType === 'plain_division') {
     // Create a division question.
     questionGeneratedObj = generatedDivisionQuestion(questionGeneratorArguments);
+  } else if (gameType === 'mixed_multiplication_division') {
+    // Generate a random boolean to determine multiplication of division.
+    const randomBoolean = Math.floor(Math.random() * 2);
+    if (randomBoolean) {
+      // Create a multiplication question.
+      questionGeneratedObj = generateMultiplicationQuestion(questionGeneratorArguments);
+    } else {
+      // Create a division question.
+      questionGeneratedObj = generatedDivisionQuestion(questionGeneratorArguments);
+    }
   } else {
     questionGeneratedObj = {};
   }
@@ -82,9 +96,10 @@ class MainQuestionComp extends React.Component {
       totalNoOfQuestions: this.props.gameNoOfQuestions,
       questionId: 0,
       gameTable: this.props.gameTable,
-      gameType: this.props.gameType,
+      // gameType: this.props.gameType,
       questionOperand1: '',
       questionOperand2: '',
+      questionOperator: '',
       correctAnswer: '',
       playWrongAnswerSound: false,
     };
@@ -129,9 +144,8 @@ class MainQuestionComp extends React.Component {
     }
     const { questionId } = this.state;
     const { questionOperand1 } = this.state;
-    // const { gameType } = this.state; // TODO: THIS MUST BE UPDATED AT SAVE_GAME_SETTINGS
     const { questionOperand2 } = this.state;
-    // const { gameTable } = this.state; // TODO: THIS MUST BE UPDATED AT SAVE_GAME_SETTINGS
+    const { questionOperator } = this.state;
     const { correctAnswer } = this.state;
     const answerGiven = this.props.currentAnswer;
     // Save the answer info.
@@ -139,6 +153,7 @@ class MainQuestionComp extends React.Component {
       questionId,
       questionOperand1,
       questionOperand2,
+      questionOperator,
       correctAnswer,
       answerGiven,
       answeredCorrectly,
@@ -149,8 +164,8 @@ class MainQuestionComp extends React.Component {
       numberOfCorrect += 1;
     }
     const percentageCorrect = Math.round((numberOfCorrect / questionId) * 100);
-    this.props.saveGameScore(numberOfCorrect, percentageCorrect)
-    this.props.saveAnswerInfo(answerObject)
+    this.props.saveGameScore(numberOfCorrect, percentageCorrect);
+    this.props.saveAnswerInfo(answerObject);
     // Check if a new question must be generated.
     this.generateQuestionCheck();
   }
@@ -168,13 +183,19 @@ class MainQuestionComp extends React.Component {
         gameTable: this.state.gameTable,
         gameType: this.props.gameType,
       };
-      questionGeneratedObj = generateNewQuestion(questionGeneratorArguments)
+      questionGeneratedObj = generateNewQuestion(questionGeneratorArguments);
       // Extract the new question info.
-      const { correctAnswer, questionOperand1, questionOperand2 } = questionGeneratedObj;
+      const {
+        correctAnswer,
+        questionOperand1,
+        questionOperand2,
+        questionOperator,
+      } = questionGeneratedObj;
       // Update the state with the question generated.
       this.setState({ correctAnswer });
       this.setState({ questionOperand1 });
       this.setState({ questionOperand2 });
+      this.setState({ questionOperator });
       // Set the questionId.
       this.setState({ questionId: this.state.questionId + 1 });
       // Restart the timer.
@@ -211,7 +232,7 @@ class MainQuestionComp extends React.Component {
         <CurrentQuestionContainer
           questionId={this.state.questionId}
           questionOperand1={this.state.questionOperand1}
-          gameType={this.state.gameType}
+          questionOperator={this.state.questionOperator}
           questionOperand2={this.state.questionOperand2}
           onSubmitFn={this.handleAnswerSubmit}
         />
@@ -223,5 +244,17 @@ class MainQuestionComp extends React.Component {
     );
   }
 }
+
+MainQuestionComp.propTypes = {
+  gameNoOfQuestions: PropTypes.number,
+  numberOfCorrect: PropTypes.number,
+  gameTable: PropTypes.number,
+  gameQuestionTime: PropTypes.number,
+  currentAnswer: PropTypes.number,
+  saveAnswerInfo: PropTypes.func.isRequired,
+  saveGameScore: PropTypes.func.isRequired,
+  updateCurrentAnswer: PropTypes.func.isRequired,
+  endGame: PropTypes.func.isRequired,
+};
 
 export default MainQuestionComp;
