@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
-  NavDropdown,
   NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
   NavLink,
-  MenuItem,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
