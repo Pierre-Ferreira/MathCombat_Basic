@@ -10,7 +10,8 @@ const gameAnswers = (state = [], action) => {
       ];
     }
     case types.CLEAR_GAME: {
-      state = []
+      state = [];
+      break;
     }
     default:
       return state;

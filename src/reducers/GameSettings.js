@@ -1,5 +1,5 @@
-import * as types from '../constants/ActionTypes';
 import uuidv1 from 'uuid';
+import * as types from '../constants/ActionTypes';
 
 const initialState = {
   gameId: '',
