@@ -8,11 +8,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    // startGame: () => dispatch({ type: 'START_GAME' }),
-    // endGame: () => dispatch({ type: 'END_GAME' }),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(GameOverComp);
+export default connect(mapStateToProps)(GameOverComp);

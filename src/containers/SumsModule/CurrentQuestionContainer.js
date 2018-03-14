@@ -14,4 +14,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CurrentQuestionComp)
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentQuestionComp);

@@ -15,7 +15,7 @@ const gameScore = (state = initialState, action) => {
       };
     case types.CLEAR_GAME: {
       state = initialState;
-      break;
+      return state;
     }
     default:
       return state;
