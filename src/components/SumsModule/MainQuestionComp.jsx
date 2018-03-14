@@ -90,7 +90,6 @@ class MainQuestionComp extends React.Component {
       totalNoOfQuestions: this.props.gameNoOfQuestions,
       questionId: 0,
       gameUpperRangeLimit: this.props.gameUpperRangeLimit,
-      gameType: this.props.gameType,
       questionOperand1: '',
       questionOperand2: '',
       correctAnswer: '',
@@ -157,8 +156,8 @@ class MainQuestionComp extends React.Component {
       numberOfCorrect += 1;
     }
     const percentageCorrect = Math.round((numberOfCorrect / questionId) * 100);
-    this.props.saveGameScore(numberOfCorrect, percentageCorrect)
-    this.props.saveAnswerInfo(answerObject)
+    this.props.saveGameScore(numberOfCorrect, percentageCorrect);
+    this.props.saveAnswerInfo(answerObject);
     // Check if a new question must be generated.
     this.generateQuestionCheck();
   }
@@ -174,9 +173,14 @@ class MainQuestionComp extends React.Component {
         gameUpperRangeLimit: this.state.gameUpperRangeLimit,
         gameType: this.props.gameType,
       };
-      questionGeneratedObj = generateNewQuestion(questionGeneratorArguments)
+      questionGeneratedObj = generateNewQuestion(questionGeneratorArguments);
       // Extract the new question info.
-      const { correctAnswer, questionOperand1, questionOperand2, questionOperator } = questionGeneratedObj;
+      const {
+        correctAnswer,
+        questionOperand1,
+        questionOperand2,
+        questionOperator,
+      } = questionGeneratedObj;
       // Update the state with the question generated.
       this.setState({ correctAnswer });
       this.setState({ questionOperand1 });
@@ -230,5 +234,18 @@ class MainQuestionComp extends React.Component {
     );
   }
 }
+MainQuestionComp.propTypes = {
+  currentAnswer: PropTypes.number.isRequired,
+  gameQuestionTime: PropTypes.number.isRequired,
+  gameNoOfQuestions: PropTypes.number.isRequired,
+  numberOfCorrect: PropTypes.number.isRequired,
+  gameUpperRangeLimit: PropTypes.number.isRequired,
+  gameType: PropTypes.string.isRequired,
+  saveGameScore: PropTypes.func.isRequired,
+  saveAnswerInfo: PropTypes.func.isRequired,
+  updateCurrentAnswer: PropTypes.func.isRequired,
+  endGame: PropTypes.func.isRequired,
+};
+
 
 export default MainQuestionComp;

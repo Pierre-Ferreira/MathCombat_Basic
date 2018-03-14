@@ -30,4 +30,9 @@ const GameFeedbackComp = (props) => {
   );
 };
 
+GameFeedbackComp.propTypes = {
+  gameType: PropTypes.string.isRequired,
+  gameAnswers: PropTypes.arrayOf.isRequired,
+};
+
 export default GameFeedbackComp;

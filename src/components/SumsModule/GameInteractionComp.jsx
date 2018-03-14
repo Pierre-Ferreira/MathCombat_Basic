@@ -5,26 +5,26 @@ import MainQuestionContainer from '../../containers/SumsModule/MainQuestionConta
 import GameOverContainer from '../../containers/SumsModule/GameOverContainer';
 import WelcomeScreenComp from './WelcomeScreenComp';
 
-class GameInteractionComp extends React.Component {
-  constructor(props) {
-    super(props);
+const GameInteractionComp = (props) => {
+  let displayComp = '';
+  if (props.displayWelcomeScreen) {
+    displayComp = <WelcomeScreenComp />;
+  } else {
+    displayComp = (props.gameInProgress) ?
+      <MainQuestionContainer /> :
+      <GameOverContainer />;
   }
+  return (
+    <section id="game-interaction-area">
+      {displayComp}
+    </section>
+  );
+};
 
-  render() {
-    let displayComp = '';
-    if (this.props.displayWelcomeScreen) {
-      displayComp = <WelcomeScreenComp />
-    } else{
-      displayComp = (this.props.gameInProgress) ?
-        <MainQuestionContainer /> :
-        <GameOverContainer />
-    }
-    return (
-      <section id="game-interaction-area">
-        {displayComp}
-      </section>
-    )
-  }
-}
+GameInteractionComp.propTypes = {
+  displayWelcomeScreen: PropTypes.bool.isRequired,
+  gameInProgress: PropTypes.bool.isRequired,
+};
+
 
 export default GameInteractionComp;
