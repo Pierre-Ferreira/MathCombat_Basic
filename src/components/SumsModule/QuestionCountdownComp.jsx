@@ -18,8 +18,4 @@ QuestionCountdownComp.propTypes = {
   timerCount: PropTypes.string.isRequired,
 };
 
-QuestionCountdownComp.defaultProps = {
-
-};
-
 export default QuestionCountdownComp;
