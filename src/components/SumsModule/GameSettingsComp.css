@@ -12,15 +12,6 @@
   font-size: large;
 }
 
-#sums-main-container-area #game-settings-area #sums-time-per-question {
-  /*display: -webkit-box;
-  width: -webkit-fill-available;*/
-  /* height: 125%; */
-  /*font-size: x-larger;*/
-  /*margin-top: 10px;*/
-}
 #sums-main-container-area #game-settings-area label {
-    /*display: inline-block;
-    margin-bottom: .5rem;*/
     height: 100%;
 }
